@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More About Me</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="/bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <header>
+    <img id="logo" src="/logo.png" alt="Logo" />
+    <h1>More About Me</h1>
+    <p><a href="/">Go back to Home</a></p>
+  </header>
+
+  <main>
+    <h2>Hi, I'm Irfan</h2>
+    <p>
+      I'm a passionate student and self-learner exploring the world of programming, automation, and ethical hacking. I love building creative tools, learning new technologies, and solving real-world problems using code.
+    </p>
+    <p>
+      My journey started with scripting on mobile using Termux, and now I'm expanding into building full-stack applications, bots, and scraping tools. I enjoy working with Python, Node.js, and other powerful tools that help bring ideas to life.
+    </p>
+    <p>
+      In my free time, I play games, experiment with AI, and plan new digital projects.
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Irfan. All rights reserved.</p>
+  </footer>
+
+  <audio id="audio-player" controls autoplay loop>
+    <source src="/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button id="mute-button" onclick="toggleMute()">Mute</button>
+
+  <script>
+    const player = document.getElementById('audio-player');
+    const button = document.getElementById('mute-button');
+
+    function toggleMute() {
+      player.muted = !player.muted;
+      button.textContent = player.muted ? 'Unmute' : 'Mute';
+    }
+  </script>
+</body>
+</html>
