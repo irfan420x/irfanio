@@ -53,20 +53,21 @@
   </audio>
 
   <!-- Mute/Unmute Button -->
-  <button onclick="toggleMute()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-    Mute / Unmute Music
-  </button>
+  <button id="mute-button" onclick="toggleMute()">Mute / Unmute Music</button>
 
+  <!-- Script -->
   <script>
     const audio = document.getElementById('bg-audio');
 
-    // iOS autoplay fix
+    // Try autoplay again after load (for iOS/Safari)
     window.addEventListener('load', () => {
       audio.play().catch(() => {});
     });
 
     function toggleMute() {
       audio.muted = !audio.muted;
+      const btn = document.getElementById('mute-button');
+      btn.textContent = audio.muted ? "Unmute Music" : "Mute Music";
     }
   </script>
 
