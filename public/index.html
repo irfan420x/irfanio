@@ -16,7 +16,6 @@
   </video>
 
   <header>
-    <!-- Logo -->
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png"
       alt="Irfan Ahmed Logo"
@@ -38,17 +37,38 @@
 
       <button type="submit">Send Message</button>
     </form>
+
+    <!-- More Info Button -->
+    <button onclick="window.location.href='/info'" style="margin-top: 20px;">More info about me</button>
   </main>
 
   <footer>
     <p>© 2025 IRFAN AHMMED</p>
   </footer>
 
-  <!-- Audio Player -->
-  <audio controls id="audio-player" preload="none">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3" />
+  <!-- Audio Element (Autoplay + Loop) -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="https://ia802701.us.archive.org/3/items/DemiLovatoHeartAttack_201904/Demi%20Lovato%20-%20Heart%20Attack.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
+
+  <!-- Mute/Unmute Button -->
+  <button onclick="toggleMute()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+    Mute / Unmute Music
+  </button>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+
+    // iOS autoplay fix
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {});
+    });
+
+    function toggleMute() {
+      audio.muted = !audio.muted;
+    }
+  </script>
 
 </body>
 </html>
