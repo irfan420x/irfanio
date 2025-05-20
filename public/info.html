@@ -3,42 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>More About Irfan</title>
+  <title>More Info About Irfan Ahmed</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>More About Me</h1>
-    <a href="/" style="color: cyan;">← Back to Home</a>
+    <h1>IRFAN AHMMED</h1>
+    <p>Telegram: <a href="https://t.me/Irfan420x" target="_blank">@Irfan420x</a></p>
+    <p>Facebook: <a href="https://www.facebook.com/psychopath.irfan.io" target="_blank">psychopath.irfan.io</a></p>
   </header>
 
   <main>
-    <section>
-      <h2>Who am I?</h2>
-      <p>I am Irfan Ahmmed — a passionate learner, web developer, and automation enthusiast. I love working with bots, scripting, and server-side apps.</p>
-    </section>
+    <h2>Contact Me</h2>
+    <form action="/send-message" method="POST" id="contact-form">
+      <label for="name">Name (optional):</label>
+      <input type="text" id="name" name="name" placeholder="Your name" />
 
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        <li>Node.js & Express</li>
-        <li>Python (automation, scraping)</li>
-        <li>HTML, CSS, JavaScript</li>
-        <li>Telegram & Facebook Bot Integration</li>
-        <li>Cybersecurity Basics</li>
-      </ul>
-    </section>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
 
-    <section>
-      <h2>Hobbies</h2>
-      <p>Coding, Gaming, Listening to music, Watching tech videos</p>
-    </section>
+      <button type="submit">Send Message</button>
+    </form>
 
-    <section>
-      <h2>Find Me Online</h2>
-      <p>Telegram: <a href="https://t.me/Irfan420x" target="_blank">@Irfan420x</a></p>
-      <p>Facebook: <a href="https://facebook.com/psychopath.irfan.io" target="_blank">psychopath.irfan.io</a></p>
-    </section>
+    <button onclick="window.location.href='/'" style="margin-top: 20px;">Back to Home</button>
   </main>
 
   <footer>
