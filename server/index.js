@@ -1,45 +1,52 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios');
+import express from 'express';
+import bodyParser from 'body-parser';
+import fetch from 'node-fetch';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
 const TELEGRAM_BOT_TOKEN = '8140462013:AAHILsAM_AjY4kxqTW4FJu9b2RNlKf1fBvs';
-const TELEGRAM_CHAT_ID = '7429947930';  // তোমার TG Chat ID
+const TELEGRAM_CHAT_ID = '7429947930';
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/send-message', async (req, res) => {
-  const { message } = req.body;
-
-  if (!message) {
-    return res.status(400).send('Message is required');
-  }
-
-  const text = `
-New message from @Irfan420x:
-
-${message}
-  `;
-
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
   try {
-    await axios.post(url, {
-      chat_id: TELEGRAM_CHAT_ID,
-      text: text,
-      parse_mode: 'Markdown',
+    const { name, message } = req.body;
+
+    if (!message || message.trim() === '') {
+      return res.status(400).send('Message is required');
+    }
+
+    const userName = name && name.trim() !== '' ? name.trim() : 'Anonymous';
+
+    const telegramMessage = `New message from personal website:\n\nName: ${userName}\nMessage: ${message.trim()}`;
+
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: telegramMessage,
+      }),
     });
-    res.send('Message sent successfully!');
+
+    const data = await response.json();
+
+    if (!data.ok) {
+      return res.status(500).send('Failed to send message to Telegram.');
+    }
+
+    res.redirect('/'); // অথবা success পেজে যেতে পারো
   } catch (error) {
-    console.error('Telegram send error:', error.response?.data || error.message);
-    res.status(500).send('Failed to send message to Telegram.');
+    console.error('Error sending message:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
