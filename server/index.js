@@ -1,18 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const app = express();
 const PORT = 5050; // পোর্ট পরিবর্তন করা হয়েছে
 
 const TELEGRAM_BOT_TOKEN = '8140462013:AAHILsAM_AjY4kxqTW4FJu9b2RNlKf1fBvs';
 const TELEGRAM_CHAT_ID = '7429947930';
-
-// ESM-এ __dirname তৈরি করা
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,16 +42,11 @@ app.post('/send-message', async (req, res) => {
     }
 
     console.log('Message sent successfully to Telegram!');
-    res.redirect('/');
+    res.redirect('/'); // চাইলে '/thank-you' রুট বানিয়ে এখানে সেট করতে পারো
   } catch (error) {
     console.error('Error while sending Telegram message:', error);
     res.status(500).send('Internal Server Error');
   }
-});
-
-// ✅ /info রাউট যুক্ত করা হলো
-app.get('/info', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'info.html'));
 });
 
 app.listen(PORT, () => {
