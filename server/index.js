@@ -1,12 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config(); // .env থেকে ভ্যারিয়েবল লোড
 
 const app = express();
-const PORT = 5050; // পোর্ট পরিবর্তন করা হয়েছে
+const PORT = 5050;
 
-const TELEGRAM_BOT_TOKEN = '8140462013:AAHILsAM_AjY4kxqTW4FJu9b2RNlKf1fBvs';
-const TELEGRAM_CHAT_ID = '7429947930';
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,7 +45,7 @@ app.post('/send-message', async (req, res) => {
     }
 
     console.log('Message sent successfully to Telegram!');
-    res.redirect('/'); // চাইলে '/thank-you' রুট বানিয়ে এখানে সেট করতে পারো
+    res.redirect('/');
   } catch (error) {
     console.error('Error while sending Telegram message:', error);
     res.status(500).send('Internal Server Error');
