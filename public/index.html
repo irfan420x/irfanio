@@ -3,51 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Irfan Ahmmed - Personal Website</title>
+  <title>IRFAN AHMMED - Personal Website</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- Background Video -->
   <video autoplay muted loop id="bg-video">
-    <source src="../assets/videos/bg.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
   </video>
 
-  <!-- Background fallback image (via CSS) -->
-
-  <!-- Audio: Background Music -->
-  <audio autoplay loop id="bg-music" style="display:none;">
-    <source src="../assets/audio/favorite-song.mp3" type="audio/mpeg" />
-  </audio>
-
   <header>
-    <img src="../assets/images/logo.png" alt="Irfan Ahmmed Logo" class="logo" />
-    <h1>Irfan Ahmmed</h1>
-    <p class="subtitle">Telegram: <a href="https://t.me/Irfan420x" target="_blank">@Irfan420x</a></p>
+    <!-- Logo -->
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/OOjs_UI_icon_userAvatar.svg/1024px-OOjs_UI_icon_userAvatar.svg.png"
+      alt="Irfan Ahmed Logo"
+      id="logo"
+    />
+    <h1>IRFAN AHMMED</h1>
+    <p>Telegram: <a href="https://t.me/Irfan420x" target="_blank">@Irfan420x</a></p>
+    <p>Facebook: <a href="https://www.facebook.com/psychopath.irfan.io" target="_blank">psychopath.irfan.io</a></p>
   </header>
 
   <main>
-    <section class="contact-section">
-      <h2>Contact Me</h2>
-      <form action="/send-message" method="POST" class="contact-form">
-        <label for="name">Name (Optional):</label>
-        <input type="text" id="name" name="name" placeholder="Your name (optional)" />
+    <h2>Contact Me</h2>
+    <form action="/send-message" method="POST" id="contact-form">
+      <label for="name">Name (or Anonymous):</label>
+      <input type="text" id="name" name="name" placeholder="Your name" />
 
-        <label for="favorite">Your Favorite Things (Songs, Food, etc):</label>
-        <input type="text" id="favorite" name="favorite" placeholder="What do you like?" required />
+      <label for="favorite">Favorite Things (song, food, etc.):</label>
+      <input type="text" id="favorite" name="favorite" placeholder="Your favorites" required />
 
-        <label for="message">Secret Message:</label>
-        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
 
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
+      <button type="submit">Send Message</button>
+    </form>
   </main>
 
   <footer>
-    <p>Find me on <a href="https://www.facebook.com/psychopath.irfan.io" target="_blank">Facebook</a></p>
+    <p>© 2025 IRFAN AHMMED</p>
   </footer>
+
+  <!-- Audio Player -->
+  <audio controls id="audio-player" preload="none">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
 
 </body>
 </html>
