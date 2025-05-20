@@ -1,32 +1,30 @@
-/* Reset & base */
+/* Reset and base */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
+  color: #eee;
+  background: #222;
   min-height: 100vh;
-  background: url('../assets/images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #e0e0e0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
   padding: 20px;
+  overflow-x: hidden;
 }
 
-/* Background Video */
+/* Background video */
 #bg-video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.15;
+  filter: brightness(0.5);
 }
 
 /* Header */
@@ -35,124 +33,141 @@ header {
   margin-bottom: 40px;
 }
 
-.logo {
-  width: 140px;
-  height: 140px;
+#logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
   border-radius: 50%;
-  box-shadow: 0 0 25px #00e5ff;
-  margin: 0 auto 15px;
-  display: block;
-  border: 3px solid #00e5ff;
+  border: 3px solid #0af;
+  background: #000a;
+  padding: 10px;
 }
 
-h1 {
-  font-size: 3.5rem;
+header h1 {
+  font-size: 3rem;
   font-weight: 700;
-  color: #00e5ff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  color: #0af;
 }
 
-.subtitle a {
-  color: #00d8ff;
+header p {
+  font-size: 1.1rem;
+  margin: 4px 0;
+}
+
+header a {
+  color: #09f;
   text-decoration: none;
-  font-size: 1.2rem;
 }
 
-.subtitle a:hover {
+header a:hover {
   text-decoration: underline;
 }
 
-/* Main Contact Section */
+/* Main content */
 main {
-  width: 100%;
-  max-width: 480px;
-  background: rgba(0, 0, 0, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.7);
   padding: 25px 30px;
   border-radius: 12px;
-  box-shadow: 0 0 25px #00e5ff;
+  box-shadow: 0 0 15px #09f;
 }
 
-.contact-section h2 {
-  font-size: 2.8rem;
+main h2 {
+  font-size: 2rem;
   margin-bottom: 20px;
-  color: #00e5ff;
+  color: #0af;
   text-align: center;
-  font-weight: 700;
 }
 
-.contact-form label {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
+form label {
   display: block;
-  font-weight: 600;
-  color: #a0f7ff;
+  font-weight: 700;
+  margin-bottom: 8px;
+  margin-top: 18px;
+  font-size: 1.1rem;
 }
 
-.contact-form input,
-.contact-form textarea {
+form input[type="text"],
+form textarea {
   width: 100%;
   padding: 10px 12px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: none;
   font-size: 1rem;
-  background-color: #121212;
-  color: #e0e0e0;
-  box-shadow: inset 0 0 8px #00e5ff;
-  resize: vertical;
-}
-
-.contact-form textarea {
-  min-height: 100px;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  box-shadow: 0 0 12px #00f0ff;
-  background-color: #0a0a0a;
-}
-
-.contact-form button {
-  background: #00e5ff;
+  border-radius: 6px;
   border: none;
-  padding: 14px 0;
-  width: 100%;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #000;
-  border-radius: 10px;
-  cursor: pointer;
+  outline: none;
   transition: background-color 0.3s ease;
 }
 
-.contact-form button:hover {
-  background: #00b8cc;
+form input[type="text"]:focus,
+form textarea:focus {
+  background-color: #12345633;
+  color: #fff;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: #0af;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #08c;
 }
 
 /* Footer */
 footer {
-  margin-top: 35px;
-  font-size: 1.1rem;
-  color: #a0f7ff;
   text-align: center;
+  margin-top: 45px;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-footer a {
-  color: #00d8ff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
+/* Audio Player */
+#audio-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #09f88a;
+  background: #111;
+  outline: none;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 2.8rem;
+  #logo {
+    width: 90px;
+    height: 90px;
   }
+  
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
   main {
+    margin: 20px;
     padding: 20px;
+  }
+  
+  #audio-player {
+    width: 90%;
+    right: 5%;
+    bottom: 15px;
   }
 }
