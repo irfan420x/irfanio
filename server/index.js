@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 5050; // পোর্ট পরিবর্তন করা হয়েছে
 
 const TELEGRAM_BOT_TOKEN = '8140462013:AAHILsAM_AjY4kxqTW4FJu9b2RNlKf1fBvs';
 const TELEGRAM_CHAT_ID = '7429947930';
@@ -37,16 +37,18 @@ app.post('/send-message', async (req, res) => {
     const data = await response.json();
 
     if (!data.ok) {
+      console.error('Telegram API Error:', data);
       return res.status(500).send('Failed to send message to Telegram.');
     }
 
-    res.redirect('/'); // অথবা success পেজে যেতে পারো
+    console.log('Message sent successfully to Telegram!');
+    res.redirect('/'); // চাইলে '/thank-you' রুট বানিয়ে এখানে সেট করতে পারো
   } catch (error) {
-    console.error('Error sending message:', error);
+    console.error('Error while sending Telegram message:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
