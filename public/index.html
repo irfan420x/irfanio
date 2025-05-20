@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Irfan Ahmed - Personal Site</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <video autoplay muted loop class="bg-video">
+    <source src="../assets/bg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
+  <header class="header">
+    <img src="../assets/logo.png" alt="Irfan Logo" class="logo" />
+    <h1 class="name">Irfan Ahmed</h1>
+    <p class="tagline">Welcome to my personal space</p>
+  </header>
+
+  <main class="container">
+    <section class="contact-section">
+      <h2>Contact Me Anonymously</h2>
+      <form id="contact-form">
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Write your message here..."
+          rows="5"
+          required
+        ></textarea>
+
+        <div class="form-row">
+          <input type="text" id="favorite" name="favorite" placeholder="Favorite things (music, food, etc.)" />
+          <input type="text" id="device" name="device" placeholder="Your device (optional)" />
+        </div>
+
+        <button type="submit" class="btn">Send Message</button>
+        <p id="form-status"></p>
+      </form>
+    </section>
+
+    <section class="social-section">
+      <h2>Find me on Social Media</h2>
+      <ul class="social-links">
+        <li><a href="https://t.me/Irfan420x" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+        <li><a href="https://www.facebook.com/psychopath.irfan.io" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const message = form.message.value.trim();
+      const favorite = form.favorite.value.trim();
+      const device = form.device.value.trim();
+
+      if (!message) {
+        status.textContent = 'Message cannot be empty.';
+        status.style.color = 'red';
+        return;
+      }
+
+      const fullMessage = `Message: ${message}\nFavorite: ${favorite || 'N/A'}\nDevice: ${device || 'N/A'}`;
+
+      status.textContent = 'Sending...';
+      status.style.color = 'black';
+
+      try {
+        const res = await fetch('/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: fullMessage })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          status.textContent = 'Message sent successfully!';
+          status.style.color = 'green';
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Failed to send message');
+        }
+      } catch (err) {
+        status.textContent = err.message;
+        status.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>
