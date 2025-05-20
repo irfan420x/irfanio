@@ -3,97 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Irfan Ahmed - Personal Site</title>
+  <title>Irfan Ahmmed - Personal Website</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <video autoplay muted loop class="bg-video">
-    <source src="../assets/bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="../assets/videos/bg.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
   </video>
 
-  <header class="header">
-    <img src="../assets/logo.png" alt="Irfan Logo" class="logo" />
-    <h1 class="name">Irfan Ahmed</h1>
-    <p class="tagline">Welcome to my personal space</p>
+  <!-- Background fallback image (via CSS) -->
+
+  <!-- Audio: Background Music -->
+  <audio autoplay loop id="bg-music" style="display:none;">
+    <source src="../assets/audio/favorite-song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <header>
+    <img src="../assets/images/logo.png" alt="Irfan Ahmmed Logo" class="logo" />
+    <h1>Irfan Ahmmed</h1>
+    <p class="subtitle">Telegram: <a href="https://t.me/Irfan420x" target="_blank">@Irfan420x</a></p>
   </header>
 
-  <main class="container">
+  <main>
     <section class="contact-section">
-      <h2>Contact Me Anonymously</h2>
-      <form id="contact-form">
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Write your message here..."
-          rows="5"
-          required
-        ></textarea>
+      <h2>Contact Me</h2>
+      <form action="/send-message" method="POST" class="contact-form">
+        <label for="name">Name (Optional):</label>
+        <input type="text" id="name" name="name" placeholder="Your name (optional)" />
 
-        <div class="form-row">
-          <input type="text" id="favorite" name="favorite" placeholder="Favorite things (music, food, etc.)" />
-          <input type="text" id="device" name="device" placeholder="Your device (optional)" />
-        </div>
+        <label for="favorite">Your Favorite Things (Songs, Food, etc):</label>
+        <input type="text" id="favorite" name="favorite" placeholder="What do you like?" required />
 
-        <button type="submit" class="btn">Send Message</button>
-        <p id="form-status"></p>
+        <label for="message">Secret Message:</label>
+        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit">Send Message</button>
       </form>
-    </section>
-
-    <section class="social-section">
-      <h2>Find me on Social Media</h2>
-      <ul class="social-links">
-        <li><a href="https://t.me/Irfan420x" target="_blank" rel="noopener noreferrer">Telegram</a></li>
-        <li><a href="https://www.facebook.com/psychopath.irfan.io" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-      </ul>
     </section>
   </main>
 
-  <script>
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
+  <footer>
+    <p>Find me on <a href="https://www.facebook.com/psychopath.irfan.io" target="_blank">Facebook</a></p>
+  </footer>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const message = form.message.value.trim();
-      const favorite = form.favorite.value.trim();
-      const device = form.device.value.trim();
-
-      if (!message) {
-        status.textContent = 'Message cannot be empty.';
-        status.style.color = 'red';
-        return;
-      }
-
-      const fullMessage = `Message: ${message}\nFavorite: ${favorite || 'N/A'}\nDevice: ${device || 'N/A'}`;
-
-      status.textContent = 'Sending...';
-      status.style.color = 'black';
-
-      try {
-        const res = await fetch('/send', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: fullMessage })
-        });
-
-        const data = await res.json();
-
-        if (data.success) {
-          status.textContent = 'Message sent successfully!';
-          status.style.color = 'green';
-          form.reset();
-        } else {
-          throw new Error(data.error || 'Failed to send message');
-        }
-      } catch (err) {
-        status.textContent = err.message;
-        status.style.color = 'red';
-      }
-    });
-  </script>
 </body>
 </html>
