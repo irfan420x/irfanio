@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IRFAN AHMMED - Personal Website</title>
   <link rel="stylesheet" href="style.css" />
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
 <body>
 
@@ -37,17 +41,14 @@
 
       <button type="submit">Send Message</button>
     </form>
-
-    <!-- More Info Button -->
-    <button onclick="window.location.href='/info'" style="margin-top: 20px;">More info about me</button>
   </main>
 
   <footer>
     <p>© 2025 IRFAN AHMMED</p>
   </footer>
 
-  <!-- Audio Element (Autoplay + Loop) -->
-  <audio id="bg-audio" autoplay loop>
+  <!-- Audio Element (Autoplay + Loop + Muted) -->
+  <audio id="bg-audio" autoplay loop muted>
     <source src="https://ia802701.us.archive.org/3/items/DemiLovatoHeartAttack_201904/Demi%20Lovato%20-%20Heart%20Attack.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
@@ -59,7 +60,6 @@
   <script>
     const audio = document.getElementById('bg-audio');
 
-    // Try autoplay again after load (for iOS/Safari)
     window.addEventListener('load', () => {
       audio.play().catch(() => {});
     });
